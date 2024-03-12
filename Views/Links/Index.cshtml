@@ -1,0 +1,79 @@
+﻿@model IEnumerable<LinkBuildingProject.Web.ViewModels.LinkViewModels.LinkViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Links</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-info">Add New</a>
+</p>
+<div class="row">
+    <div class="col-3">
+        <a asp-action="index" asp-route-sortOrder="Pending" class="btn btn-primary">Pending</a>
+    </div>
+    <div class="col-3">
+        <a asp-action="index" asp-route-sortOrder="Success" class="btn btn-success">Success</a>
+    </div>
+    <div class="col-3">
+        <a asp-action="index" asp-route-sortOrder="Failed" class="btn btn-warning">Failed</a>
+    </div>
+    <div class="col-3">
+        <a asp-action="index" asp-route-sortOrder="All" class="btn btn-info">All</a>
+    </div>
+
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LinkTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LinkUrl)
+            </th>
+            <th>
+                User Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LinkTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LinkUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "EditLinks", new { id = item.Id }) |
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

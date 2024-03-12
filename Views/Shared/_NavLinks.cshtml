@@ -1,0 +1,39 @@
+﻿<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">SEO Directory</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" asp-action="" asp-controller="">
+                        Home
+                        <span class="visually-hidden">(current)</span>
+                    </a>
+                </li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="links" asp-action="Create">Add New Links</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="GetUserLinks" asp-controller="links">Check Links Status</a>
+                    </li>
+                    
+                }
+                @if(User.IsInRole("Admin")){
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">CMS</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" asp-action="Index" asp-controller="Categories">Category</a>
+                        <a class="dropdown-item" asp-action="Index" asp-controller="links">Link</a>
+                      
+                    </div>
+                </li>
+                }
+            </ul>
+           <partial name="_LoginPartial" />
+        </div>
+    </div>
+</nav>
